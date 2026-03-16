@@ -1,10 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-
+from .models import Project
 # Create your views here.
 
 def home(request):
-    return HttpResponse("Hello World")
+    response = Project.objects.order_by("pub_date")
+    return render(request=request, template_name="personalpage/home.html",context={"response":response})
 
 def project(request):
-    return render(request=request, template_name='personalpage/projects.html', context={"project":project})
+    projects = Project.objects.order_by('pub_date')
+    return render(request=request, template_name='personalpage/projects.html', context={"projects":projects})

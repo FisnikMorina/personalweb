@@ -9,7 +9,7 @@ class Project(models.Model):
     description = models.TextField()
     pub_date = models.DateField()
     tech_stack = models.CharField(max_length=500)
-    link = models.URLField()
+    link = models.URLField(blank=True)
 
     def __str__(self):
         return self.name
